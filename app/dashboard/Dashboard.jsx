@@ -4,9 +4,11 @@ import Header from "@/components/Header";
 
 const Dashboard = ({ session }) => {
   return (
-    <div className="flex w-screen h-screen justify-center items-center gap-4">
+    <div>
       <Header session={session}/>
-      Welcome {session.user.name}
+      <div className="flex min-h-[90vh] justify-center items-center">
+        Welcome {session.user.name}
+      </div>
     </div>
   );
 };
