@@ -10,7 +10,6 @@ const Settings = ({ session }) => {
     return (
         <div>
             <Header session={session}/>
-            <div className="mt-15"></div>
             Settings
             <button
                 onClick={deleteAcc}
