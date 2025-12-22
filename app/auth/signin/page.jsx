@@ -1,10 +1,12 @@
 "use client";
 import { authClient } from "@/lib/auth-client";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 const SignIn = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const router = useRouter();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -20,22 +22,30 @@ const SignIn = () => {
   };
 
   return (
-    <div className="w-screen h-screen">
-      <div className="flex justify-center items-center w-full h-full">
-        <div className="bg-emerald-400 p-4 rounded-xl">
-          <span className="text-2xl font-bold">Sign In</span>
-          <form onSubmit={handleSubmit} className="flex flex-col gap-6 mt-4 w-75">
+    <div className="min-h-screen flex justify-center items-center w-full h-full">
+      <div className="bg-white p-4 rounded-xl shadow-md">
+        <span className="text-2xl font-bold">Sign In</span>
+        <p className="text-sm text-gray-500">Enter your email below to login to your account</p>
+        <form onSubmit={handleSubmit} className="flex flex-col gap-4 mt-4 w-75 items-center">
+          <div className="flex flex-col w-full gap-2">
+            <label htmlFor="email" className="font-semibold">Email</label>
             <input
+              id="email"
               type="email"
-              placeholder="Email"
-              className="border-b focus:outline-none text-black" onChange={e => setEmail(e.target.value)} />
+              placeholder="alex@example.com"
+              className="border border-[#e6e6e6] shadow-sm p-2 rounded-md w-full focus:outline-none" onChange={e => setEmail(e.target.value)} />
+          </div>
+          <div className="flex flex-col w-full gap-2">
+            <label htmlFor="password" className="font-semibold">Password</label>
             <input
+              id="password"
               type="password"
               placeholder="Password"
-              className="border-b focus:outline-none text-black" onChange={e => setPassword(e.target.value)} />
-            <button type="submit" className="cursor-pointer bg-blue-600 self-center p-2 text-xl rounded-2xl w-40">Sign in</button>
-          </form>
-        </div>
+              className="border border-[#e6e6e6] shadow-sm p-2 rounded-md w-full focus:outline-none" onChange={e => setPassword(e.target.value)} />
+            </div>
+          <button type="submit" className="cursor-pointer bg-black self-center w-full p-2 rounded-lg text-white">Login</button>
+          <p className="text-gray-400">Don't have an account? <span className="text-black underline cursor-pointer" onClick={() => router.push('/auth/signup')}>Sign Up</span></p>
+        </form>
       </div>
     </div>
   );

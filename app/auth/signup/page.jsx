@@ -8,7 +8,7 @@ const SignUp = () => {
 	const [name, setName] = useState("");
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
-	const [confirmPassword, setConfirmPassword] = useState("");
+	const [showPass, setShowPass] = useState(false);
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
@@ -34,30 +34,41 @@ const SignUp = () => {
 	};
 
 	return (
-		<div className="w-screen h-screen">
-			<div className="flex justify-center items-center w-full h-full">
-				<div className="bg-emerald-400 p-4 rounded-xl">
-					<span className="text-2xl font-bold">SignUp</span>
-					<form onSubmit={handleSubmit} className="flex flex-col gap-6 mt-4 w-75">
+		<div className="min-h-screen flex justify-center items-center w-full h-full">
+			<div className="bg-white p-4 rounded-xl shadow-md">
+				<span className="text-2xl font-bold">Sign Up</span>
+				<p className="text-sm text-gray-500">Enter your informtaion to create an account</p>
+				<form onSubmit={handleSubmit} className="flex flex-col gap-4 mt-4 w-75 items-center">
+					<div className="flex flex-col w-full gap-2">
+						<label htmlFor="name" className="font-semibold">Name</label>
 						<input
-							type="text"
+							id="name"
+							type="name"
 							placeholder="Name"
-							className="border-b focus:outline-none text-black" onChange={e => setName(e.target.value)} />
+							className="border border-[#e6e6e6] shadow-sm p-2 rounded-md w-full focus:outline-none" onChange={e => setName(e.target.value)} />
+					</div>
+					<div className="flex flex-col w-full gap-2">
+						<label htmlFor="email" className="font-semibold">Email</label>
 						<input
+							id="email"
 							type="email"
-							placeholder="Email"
-							className="border-b focus:outline-none text-black" onChange={e => setEmail(e.target.value)} />
-						<input
-							type="password"
-							placeholder="Password"
-							className="border-b focus:outline-none text-black" onChange={e => setPassword(e.target.value)} />
-						<input
-							type="password"
-							placeholder="Confirm Password"
-							className="border-b focus:outline-none text-black" onChange={e => setConfirmPassword(e.target.value)} />
-						<button type="submit" className="cursor-pointer bg-blue-600 self-center p-2 text-xl rounded-2xl w-40">Sign up</button>
-					</form>
-				</div>
+							placeholder="alex@example.com"
+							className="border border-[#e6e6e6] shadow-sm p-2 rounded-md w-full focus:outline-none" onChange={e => setEmail(e.target.value)} />
+					</div>
+					<div className="flex flex-col w-full gap-2">
+						<label htmlFor="password" className="font-semibold">Password</label>
+						<div className="flex border border-[#e6e6e6] shadow-sm p-2 rounded-md w-full">
+							<input
+								id="password"
+								type={showPass ? "text" : "password"}
+								placeholder="Password"
+								className="w-full mr-4 focus:outline-none" onChange={e => setPassword(e.target.value)} />
+							<img src={showPass ? "/eyeOff.svg" : "/eyeOn.svg"} alt={showPass ? "hide" : "show"} className="cursor-pointer w-6" onClick={() => setShowPass(!showPass)}/>
+						</div>
+					</div>
+					<button type="submit" className="cursor-pointer bg-black self-center w-full p-2 rounded-lg text-white">Login</button>
+					<p className="text-gray-400">Already have an account? <span className="text-black underline cursor-pointer" onClick={() => router.push('/auth/signin')}>Sign In</span></p>
+				</form>
 			</div>
 		</div>
 	);
