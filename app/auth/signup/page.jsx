@@ -66,7 +66,7 @@ const SignUp = () => {
 							<img src={showPass ? "/eyeOff.svg" : "/eyeOn.svg"} alt={showPass ? "hide" : "show"} className="cursor-pointer w-6" onClick={() => setShowPass(!showPass)}/>
 						</div>
 					</div>
-					<button type="submit" className="cursor-pointer bg-black self-center w-full p-2 rounded-lg text-white">Login</button>
+					<button type="submit" className="cursor-pointer bg-black self-center w-full p-2 rounded-lg text-white">Create an account</button>
 					<p className="text-gray-400">Already have an account? <span className="text-black underline cursor-pointer" onClick={() => router.push('/auth/signin')}>Sign In</span></p>
 				</form>
 			</div>
