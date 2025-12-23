@@ -48,7 +48,7 @@ const Settings = ({ session }) => {
                                     className="p-2 shadow border-2 border-gray-300 rounded-xl w-full focus:outline-gray-400"
                                     onChange={(e) => setUserName(e.target.value)} />
                             </div>
-                            <div className="border-t border-t-gray-300 p-4 flex justify-between items-center bg-gray-50">
+                            <div className="border-t border-t-gray-300 p-4 flex justify-between items-center rounded-b-xl bg-gray-50">
                                 <p className="text-gray-500 text-sm">Name length should be between 3 and 32 characters</p>
                                 <button type="submit" className="cursor-pointer p-2 rounded-xl text-white bg-black px-4">Save</button>
                             </div>
@@ -67,7 +67,7 @@ const Settings = ({ session }) => {
                                     className="p-2 shadow border-2 border-gray-300 rounded-xl w-full focus:outline-gray-400"
                                     onChange={(e) => setEmail(e.target.value)} />
                             </div>
-                            <div className="border-t border-t-gray-300 p-4 flex justify-between items-center bg-gray-50">
+                            <div className="border-t border-t-gray-300 p-4 flex justify-between items-center rounded-b-xl bg-gray-50">
                                 <p className="text-gray-500 text-sm">Please enter a valid email address</p>
                                 <button type="submit" className="cursor-pointer p-2 rounded-xl text-white bg-black px-4">Save</button>
                             </div>

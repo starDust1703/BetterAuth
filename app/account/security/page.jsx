@@ -91,7 +91,7 @@ const Settings = ({ currSession, sessions }) => {
 									<img src={showPass ? "/eyeOff.svg" : "/eyeOn.svg"} alt={showPass ? "hide" : "show"} className="cursor-pointer w-6" onClick={() => setShowPass(!showPass)} />
 								</div>
 							</div>
-							<div className="border-t border-t-gray-300 p-4 flex justify-between items-center bg-gray-50">
+							<div className="border-t border-t-gray-300 p-4 flex justify-between items-center rounded-b-xl bg-gray-50">
 								<p className="text-gray-500 text-sm">Please use 8 characters at minimum</p>
 								<button
 									type="submit"

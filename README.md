@@ -31,8 +31,9 @@ DATABASE="db_name"<br>
 
 1. EmailAndPassword Sign up, Sign in
 2. Sign out, delete account
-3. Private routing
-4. Social Providers Sign in (Upcoming)
+3. Update Name, email, password
+4. Private routing
+5. Social Providers Sign in (Upcoming)
 
 ## Learn More
 

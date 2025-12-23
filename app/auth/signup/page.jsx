@@ -35,7 +35,7 @@ const SignUp = () => {
 
 	return (
 		<div className="min-h-screen flex justify-center items-center w-full h-full">
-			<div className="bg-white p-4 rounded-xl shadow-md">
+			<div className="bg-white p-4 rounded-xl shadow-md border border-gray-200">
 				<span className="text-2xl font-bold">Sign Up</span>
 				<p className="text-sm text-gray-500 mt-2">Enter your informtaion to create an account</p>
 				{error && (

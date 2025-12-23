@@ -31,11 +31,11 @@ const SignIn = () => {
 
   return (
     <div className="min-h-screen flex justify-center items-center w-full h-full">
-      <div className="bg-white p-4 rounded-xl shadow-md">
+      <div className="bg-white p-4 rounded-xl shadow-md border border-gray-200">
         <span className="text-2xl font-bold">Sign In</span>
         <p className="text-sm text-gray-500 mt-2">Enter your email below to login to your account</p>
         {error && (
-          <div className="w-full bg-red-100 text-red-700 p-2 rounded-md text-sm">
+          <div className="w-full bg-red-100 text-red-700 p-2 rounded-md text-sm mt-2">
             {error}
           </div>
         )}
@@ -63,7 +63,7 @@ const SignIn = () => {
               minLength={8}
               onChange={e => setPassword(e.target.value)} />
           </div>
-          <button type="submit" className={`bg-black self-center w-full p-2 rounded-lg text-white ${isLoading ? "cursor-not-allowed" : "cursor-pointer"}`} disabled={isLoading}>Login</button>
+          <button type="submit" className={`bg-black self-center w-full p-2 rounded-lg text-white ${isLoading ? "cursor-not-allowed" : "cursor-pointer"}`} disabled={isLoading}>{isLoading ? "Processing..." : "Login"}</button>
           <p className="text-gray-400">Don't have an account? <span className="text-black underline cursor-pointer" onClick={() => router.push('/auth/signup')}>Sign Up</span></p>
         </form>
       </div>
