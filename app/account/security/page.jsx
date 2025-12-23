@@ -7,12 +7,19 @@ import { useState } from "react";
 
 const Settings = ({ currSession, sessions }) => {
 	const router = useRouter();
-	const [oldPassword, setOldPassword] = useState("");
+	const [currPassword, setCurrPassword] = useState("");
 	const [newPassword, setNewPassword] = useState("");
 	const [showPass, setShowPass] = useState(false);
 
-	const updatePassword = (e) => {
+	const updatePassword = async (e) => {
 		e.preventDefault();
+		await authClient.changePassword({
+			newPassword: newPassword,
+			currentPassword: currPassword,
+			revokeOtherSessions: true,
+		});
+		setCurrPassword("");
+		setNewPassword("");
 	}
 	const signOut = async () => {
 		await authClient.signOut({
@@ -23,6 +30,11 @@ const Settings = ({ currSession, sessions }) => {
 			},
 		});
 	};
+	const deleteAccount = async () => {
+		await authClient.deleteUser({
+			callbackURL: '/',
+		});
+	}
 	return (
 		<div className="mb-20">
 			<Header session={currSession} />
@@ -43,26 +55,27 @@ const Settings = ({ currSession, sessions }) => {
 								<input
 									type="text"
 									id="curr"
-									value={oldPassword}
+									value={currPassword}
 									placeholder="Current Password"
 									required
-									minLength={3}
-									maxLength={32}
+									minLength={8}
 									className="p-2 shadow border-2 border-gray-300 rounded-xl w-full focus:outline-gray-400"
-									onChange={(e) => setOldPassword(e.target.value)} />
+									onChange={(e) => setCurrPassword(e.target.value)} />
 								<label htmlFor="new" className="font-semibold">New Password</label>
 								<div className="flex border-2 border-gray-300 shadow p-2 rounded-xl w-full focus-within:border-gray-400">
 									<input
 										id="new"
 										type={showPass ? "text" : "password"}
+										value={newPassword}
 										required
-										minLength={5}
+										minLength={8}
 										placeholder="New Password"
-										className="w-full mr-4 focus:outline-none" onChange={e => setNewPassword(e.target.value)} />
+										className="w-full mr-4 focus:outline-none"
+										onChange={e => setNewPassword(e.target.value)} />
 									<img src={showPass ? "/eyeOff.svg" : "/eyeOn.svg"} alt={showPass ? "hide" : "show"} className="cursor-pointer w-6" onClick={() => setShowPass(!showPass)} />
 								</div>
 							</div>
-							<div className="border-t border-t-gray-300 p-4 flex justify-between items-center">
+							<div className="border-t border-t-gray-300 p-4 flex justify-between items-center bg-gray-50">
 								<p className="text-gray-500 text-sm">Please use 8 characters at minimum</p>
 								<button type="submit" className="cursor-pointer p-2 rounded-xl text-white bg-black px-4">Save</button>
 							</div>
@@ -86,10 +99,18 @@ const Settings = ({ currSession, sessions }) => {
 									return (
 										<div key={ses.token} className="shadow-sm rounded-xl border border-gray-200 p-4">
 											<div>{ses.ipAddress}</div>
-											{console.log(ses)}
 										</div>
 									)
 							})}
+						</div>
+						<div className="shadow-sm rounded-xl p-4 border border-gray-200 flex flex-col gap-4">
+							<div className="flex flex-col">
+								<p className="font-semibold text-lg">Delete Account</p>
+								<p className="text-sm text-gray-400 mb-2">Permanently delete your account. This will remove all linked sessions</p>
+							</div>
+							<div className="flex justify-between items-center">
+								<button className="shadow-md bg-red-600 text-white border border-gray-300 p-2 px-4 rounded-xl text-sm font-semibold cursor-pointer" onClick={() => deleteAccount()}>Delete my account</button>
+							</div>
 						</div>
 					</div>
 				</div>

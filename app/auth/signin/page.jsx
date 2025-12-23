@@ -58,7 +58,7 @@ const SignIn = () => {
               placeholder="Password"
               className="border border-[#e6e6e6] shadow-sm p-2 rounded-md w-full focus:outline-none"
               required
-              minLength={5}
+              minLength={8}
               onChange={e => setPassword(e.target.value)} />
           </div>
           <button type="submit" className={`bg-black self-center w-full p-2 rounded-lg text-white ${isLoading ? "cursor-not-allowed" : "cursor-pointer"}`} disabled={isLoading}>Login</button>

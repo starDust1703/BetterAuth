@@ -71,7 +71,7 @@ const SignUp = () => {
 								id="password"
 								type={showPass ? "text" : "password"}
 								required
-								minLength={5}
+								minLength={8}
 								placeholder="Password"
 								className="w-full mr-4 focus:outline-none" onChange={e => setPassword(e.target.value)} />
 							<img src={showPass ? "/eyeOff.svg" : "/eyeOn.svg"} alt={showPass ? "hide" : "show"} className="cursor-pointer w-6" onClick={() => setShowPass(!showPass)} />
