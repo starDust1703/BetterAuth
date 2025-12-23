@@ -1,22 +1,16 @@
-import { redirect } from "next/navigation";
-import { auth } from "@/lib/auth";
-import { headers } from "next/headers";
-import Dashboard from "./Dashboard";
+"use client";
 
-export default async function DashboardServer() {
-  const session = await auth.api.getSession({
-    headers: await headers(),
-  });
+import Header from "@/components/Header";
 
-  if (!session) redirect("/");
+const Dashboard = ({ session }) => {
+  return (
+    <div>
+      <Header session={session}/>
+      <div className="flex min-h-[90vh] justify-center items-center">
+        Welcome {session.user.name}
+      </div>
+    </div>
+  );
+};
 
-  async function deleteAcc() {
-    "use server";
-    await auth.api.deleteUser({
-      userId: session.user.id,
-    });
-    redirect("/");
-  }
-
-  return <Dashboard session={session} deleteAcc={deleteAcc} />;
-}
+export default Dashboard;

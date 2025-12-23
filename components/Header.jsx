@@ -33,7 +33,6 @@ const Header = ({ session }) => {
 		}
 	}, []);
 
-
 	const signOut = async () => {
 		await authClient.signOut({
 			fetchOptions: {

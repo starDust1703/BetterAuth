@@ -9,13 +9,13 @@ const SignUp = () => {
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
 	const [showPass, setShowPass] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState(null);
+	const [isLoading, setIsLoading] = useState(false);
+	const [error, setError] = useState(null);
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
-    setIsLoading(true);
-    setError(null);
+		setIsLoading(true);
+		setError(null);
 
 		await authClient.signUp.email({
 			name: name,
@@ -27,8 +27,8 @@ const SignUp = () => {
 				router.push('/dashboard')
 			},
 			onError: (ctx) => {
-        setIsLoading(false);
-        setError(ctx.error.message);
+				setIsLoading(false);
+				setError(ctx.error.message);
 			}
 		});
 	};
@@ -38,6 +38,11 @@ const SignUp = () => {
 			<div className="bg-white p-4 rounded-xl shadow-md">
 				<span className="text-2xl font-bold">Sign Up</span>
 				<p className="text-sm text-gray-500 mt-2">Enter your informtaion to create an account</p>
+				{error && (
+					<div className="w-full bg-red-100 text-red-700 p-2 rounded-md text-sm">
+						{error}
+					</div>
+				)}
 				<form onSubmit={handleSubmit} className="flex flex-col gap-4 mt-4 w-75 items-center">
 					<div className="flex flex-col w-full gap-2">
 						<label htmlFor="name" className="font-semibold">Name</label>
@@ -46,6 +51,7 @@ const SignUp = () => {
 							type="name"
 							required
 							minLength={3}
+							maxLength={32}
 							placeholder="Name"
 							className="border border-[#e6e6e6] shadow-sm p-2 rounded-md w-full focus:outline-none" onChange={e => setName(e.target.value)} />
 					</div>
@@ -68,7 +74,7 @@ const SignUp = () => {
 								minLength={5}
 								placeholder="Password"
 								className="w-full mr-4 focus:outline-none" onChange={e => setPassword(e.target.value)} />
-							<img src={showPass ? "/eyeOff.svg" : "/eyeOn.svg"} alt={showPass ? "hide" : "show"} className="cursor-pointer w-6" onClick={() => setShowPass(!showPass)}/>
+							<img src={showPass ? "/eyeOff.svg" : "/eyeOn.svg"} alt={showPass ? "hide" : "show"} className="cursor-pointer w-6" onClick={() => setShowPass(!showPass)} />
 						</div>
 					</div>
 					<button type="submit" className={`bg-black self-center w-full p-2 rounded-lg text-white ${isLoading ? "cursor-not-allowed" : "cursor-pointer"}`} disabled={isLoading}>Create an account</button>

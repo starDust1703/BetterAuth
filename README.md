@@ -16,9 +16,10 @@ bun dev
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
 Create a .env file in the root directory of your project with the following keys:
-BETTER_AUTH_SECRET="your_better_secret"
-BETTER_AUTH_URL=http://localhost:3000
-MONGODB_URL="your_mongoDB_URL"
+BETTER_AUTH_SECRET="your_better_secret"<br>
+BETTER_AUTH_URL=http://localhost:3000<br>
+MONGODB_URL="your_mongoDB_URL"<br>
+DATABASE="db_name"<br>
 
 ## Techs Used
 1. Next.js
