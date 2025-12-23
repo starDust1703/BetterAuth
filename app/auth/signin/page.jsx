@@ -45,6 +45,7 @@ const SignIn = () => {
             <label htmlFor="email" className="font-semibold">Email</label>
             <input
               id="email"
+              name="email"
               type="email"
               required
               placeholder="alex@example.com"
@@ -54,6 +55,7 @@ const SignIn = () => {
             <label htmlFor="password" className="font-semibold">Password</label>
             <input
               id="password"
+              name="password"
               type="password"
               placeholder="Password"
               className="border border-[#e6e6e6] shadow-sm p-2 rounded-md w-full focus:outline-none"

@@ -48,6 +48,7 @@ const SignUp = () => {
 						<label htmlFor="name" className="font-semibold">Name</label>
 						<input
 							id="name"
+							name="name"
 							type="name"
 							required
 							minLength={3}
@@ -59,6 +60,7 @@ const SignUp = () => {
 						<label htmlFor="email" className="font-semibold">Email</label>
 						<input
 							id="email"
+							name="email"
 							type="email"
 							required
 							placeholder="alex@example.com"
@@ -69,6 +71,7 @@ const SignUp = () => {
 						<div className="flex border border-[#e6e6e6] shadow-sm p-2 rounded-md w-full">
 							<input
 								id="password"
+								name="password"
 								type={showPass ? "text" : "password"}
 								required
 								minLength={8}

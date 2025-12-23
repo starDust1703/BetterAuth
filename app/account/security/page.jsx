@@ -10,14 +10,23 @@ const Settings = ({ currSession, sessions }) => {
 	const [currPassword, setCurrPassword] = useState("");
 	const [newPassword, setNewPassword] = useState("");
 	const [showPass, setShowPass] = useState(false);
+	const [isLoading, setIsLoading] = useState(false);
+	const [error, setError] = useState(null);
 
 	const updatePassword = async (e) => {
 		e.preventDefault();
-		await authClient.changePassword({
+		setIsLoading(true);
+		setError(null);
+		const { data, error } = await authClient.changePassword({
 			newPassword: newPassword,
 			currentPassword: currPassword,
 			revokeOtherSessions: true,
+		}, {
+			onError: (ctx) => {
+				setError(ctx.error.message);
+			}
 		});
+		setIsLoading(false);
 		setCurrPassword("");
 		setNewPassword("");
 	}
@@ -53,18 +62,25 @@ const Settings = ({ currSession, sessions }) => {
 								<p className="text-sm text-gray-400 mb-2">Enter your current password and a new password</p>
 								<label htmlFor="curr" className="font-semibold">Current Password</label>
 								<input
-									type="text"
 									id="curr"
+									name="curr"
+									type="text"
 									value={currPassword}
 									placeholder="Current Password"
 									required
 									minLength={8}
 									className="p-2 shadow border-2 border-gray-300 rounded-xl w-full focus:outline-gray-400"
 									onChange={(e) => setCurrPassword(e.target.value)} />
+									{error && (
+										<div className="w-full bg-red-100 text-red-700 p-2 rounded-md text-sm">
+											{error}
+										</div>
+									)}
 								<label htmlFor="new" className="font-semibold">New Password</label>
 								<div className="flex border-2 border-gray-300 shadow p-2 rounded-xl w-full focus-within:border-gray-400">
 									<input
 										id="new"
+										name="new"
 										type={showPass ? "text" : "password"}
 										value={newPassword}
 										required
@@ -77,7 +93,10 @@ const Settings = ({ currSession, sessions }) => {
 							</div>
 							<div className="border-t border-t-gray-300 p-4 flex justify-between items-center bg-gray-50">
 								<p className="text-gray-500 text-sm">Please use 8 characters at minimum</p>
-								<button type="submit" className="cursor-pointer p-2 rounded-xl text-white bg-black px-4">Save</button>
+								<button
+									type="submit"
+									className={`p-2 rounded-xl text-white bg-black px-4 ${isLoading ? "cursor-not-allowed" : "cursor-pointer"}`}
+									disabled={isLoading}>Update</button>
 							</div>
 						</form>
 						<div className="shadow-sm rounded-xl p-4 border border-gray-200 flex flex-col gap-4">
