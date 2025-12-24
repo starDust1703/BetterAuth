@@ -1,16 +1,24 @@
 "use client";
+import ThemeToggle from "@/components/ThemeToggler";
 import { useRouter } from "next/navigation";
 
 export default function Home() {
   const router = useRouter();
   return (
-    <div className="flex w-screen h-screen justify-center items-center gap-2">
+    <div className={"flex w-screen min-h-screen justify-center items-center gap-2 bg-zinc-50 dark:bg-zinc-950"}>
+      <ThemeToggle />
       <button
-        className="p-2 bg-black text-white rounded-2xl active:border border-2 px-8 cursor-pointer"
-        onClick={() => router.push('/auth/signin')}>Sign In</button>
+        className={"p-2 rounded-2xl border-2 px-8 cursor-pointer bg-white text-zinc-900 dark:bg-zinc-800 dark:text-zinc-100 active:border-gray-400 dark:active:border-zinc-600"}
+        onClick={() => router.push('/auth/signin')}
+      >
+        Sign In
+      </button>
       <button
-        className="p-2 bg-black text-white rounded-2xl active:border border-2 px-8 cursor-pointer"
-        onClick={() => router.push('/auth/signup')}>Sign Up</button>
+        className={"p-2 rounded-2xl border-2 px-8 cursor-pointer bg-white text-zinc-900 dark:bg-zinc-800 dark:text-zinc-100 active:border-gray-400 dark:active:border-zinc-600"}
+        onClick={() => router.push('/auth/signup')}
+      >
+        Sign Up
+      </button>
     </div>
   );
 }
